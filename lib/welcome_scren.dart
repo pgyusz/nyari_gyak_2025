@@ -4,16 +4,18 @@ import 'package:flutter_udid/flutter_udid.dart';
 import 'package:nyari_gyak_2025/main.dart';
 import 'package:nyari_gyak_2025/products_screen.dart';
 import 'package:nyari_gyak_2025/providers/user_data.dart';
+import 'package:nyari_gyak_2025/res/colours.dart';
+import 'package:nyari_gyak_2025/res/fonts.dart';
 import 'package:provider/provider.dart';
 
-class WelcomeScreen extends StatefulWidget {
-  const WelcomeScreen({super.key});
+class OldWelcomeScreen extends StatefulWidget {
+  const OldWelcomeScreen({super.key});
 
   @override
-  State<WelcomeScreen> createState() => _WelcomeScreenState();
+  State<OldWelcomeScreen> createState() => _OldWelcomeScreenState();
 }
 
-class _WelcomeScreenState extends State<WelcomeScreen> {
+class _OldWelcomeScreenState extends State<OldWelcomeScreen> {
   bool _isLoading = false;
 
   Future<String> future() async {
@@ -37,7 +39,7 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
   Widget build(BuildContext context) {
     TextEditingController textEditingController = TextEditingController();
     return Scaffold(
-      backgroundColor: CupertinoColors.activeBlue,
+      backgroundColor: Colours.green,
       body: Center(
         child: Column(
           children: [
@@ -77,7 +79,10 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
                               _isLoading = false;
                             });
                           },
-                          child: Text('NExt screen'),
+                          child: Text(
+                            'NExt screen',
+                            style: Fonts.montserrat(fontSize: FontSizes.large),
+                          ),
                         ),
               ),
             ),

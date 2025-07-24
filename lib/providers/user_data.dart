@@ -1,3 +1,4 @@
+import 'package:camera/camera.dart';
 import 'package:flutter/material.dart';
 import 'package:nyari_gyak_2025/network/apiclient.dart';
 import 'package:nyari_gyak_2025/network/responses/user_model.dart';
@@ -6,6 +7,8 @@ class UserData extends ChangeNotifier {
   final ApiClient apiClient;
   String id = '';
   String name = '';
+
+  late List<CameraDescription> cameras = [];
 
   UserData({required this.apiClient});
 

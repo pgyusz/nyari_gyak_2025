@@ -1,17 +1,24 @@
+import 'package:camera/camera.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_udid/flutter_udid.dart';
+import 'package:nyari_gyak_2025/camera_screen.dart';
+import 'package:nyari_gyak_2025/maps_screen.dart';
 import 'package:nyari_gyak_2025/network/apiclient.dart';
 import 'package:nyari_gyak_2025/providers/user_data.dart';
+import 'package:nyari_gyak_2025/screens/welcome_screen.dart';
 import 'package:nyari_gyak_2025/upper_body.dart';
-import 'package:nyari_gyak_2025/welcome_screen.dart';
+import 'package:nyari_gyak_2025/welcome_scren.dart';
 
 import 'package:http/http.dart' as http;
 import 'package:provider/provider.dart';
+
+late List<CameraDescription> _cameras;
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   ApiClient apiClient = ApiClient(client: http.Client());
   UserData userData = UserData(apiClient: apiClient);
+  userData.cameras = await availableCameras();
   var response = await userData.getUserData();
   debugPrint(response.toString());
   runApp(
@@ -30,6 +37,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'Flutter Demo',
+      debugShowCheckedModeBanner: false,
       theme: ThemeData(
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
       ),
