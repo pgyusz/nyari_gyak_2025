@@ -12,18 +12,18 @@ class UserData extends ChangeNotifier {
 
   UserData({required this.apiClient});
 
-  Future<String> getUserData() async {
-    try {
-      final response = await apiClient.getUsers();
-      if (response.success != '0') {
-        UserModel user = response.users.first;
-        id = user.id;
-        name = user.name;
-        return 'all_good';
-      }
-      return 'something_went_wrong';
-    } catch (e) {
-      return e.toString();
-    }
-  }
+  // Future<String> getUserData() async {
+  //   try {
+  //     final response = await apiClient.getUsers();
+  //     if (response.success != '0') {
+  //       UserModel user = response.users.first;
+  //       id = user.id;
+  //       name = user.name;
+  //       return 'all_good';
+  //     }
+  //     return 'something_went_wrong';
+  //   } catch (e) {
+  //     return e.toString();
+  //   }
+  // }
 }

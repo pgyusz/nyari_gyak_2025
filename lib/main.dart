@@ -18,9 +18,16 @@ void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   ApiClient apiClient = ApiClient(client: http.Client());
   UserData userData = UserData(apiClient: apiClient);
-  userData.cameras = await availableCameras();
-  var response = await userData.getUserData();
-  debugPrint(response.toString());
+  try {
+    final response = await apiClient.callSetFavorite('1111', '15', '1');
+    if (response.success == '0') {
+      debugPrint(response.message);
+    }
+    debugPrint(response.success);
+  } catch (e) {
+    debugPrint(e.toString());
+  }
+
   runApp(
     MultiProvider(
       providers: [ChangeNotifierProvider<UserData>(create: (_) => userData)],
